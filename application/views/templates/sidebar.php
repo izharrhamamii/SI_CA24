@@ -8,7 +8,7 @@
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="<?= site_url('dashboard')?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
@@ -31,6 +31,33 @@
         <span>Anggota</span>
     </a>
 </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('buku'); ?>">
+        <i class="fas fa-users"></i>
+        <span>buku</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('peminjaman'); ?>">
+        <i class="fas fa-users"></i>
+        <span>peminjaman</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('laporan/peminjaman'); ?>">
+        <i class="fas fa-users"></i>
+        <span>laporan peminjaman</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('laporan/buku'); ?>">
+        <i class="fas fa-users"></i>
+        <span>laporan buku</span>
+    </a>
 
 <hr class="sidebar-divider d-npne d-md-block">
 </ul>
