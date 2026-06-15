@@ -1,0 +1,24 @@
+</div>
+
+<footer class="sticky-footer">
+
+<div class="container my-auto">
+
+<div class="copyright text-center my-auto">
+
+<span>
+
+Copyright © 2026 Sistem Rumah Sakit |
+Admin Dashboard
+
+</span>
+
+</div>
+
+</div>
+
+</footer>
+
+</div>
+
+</div>

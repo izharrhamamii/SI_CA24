@@ -49,11 +49,88 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'auth';
+
+$route['default_controller'] = 'auth/login_admin';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['login'] = 'auth';
-$route['login/proses']='auth/login';
-$route['logout'] = 'auth/logout';
+/* =======================
+   AUTH
+======================= */
 
+$route['login-admin']='auth/login_admin';
+$route['login-pasien']='auth/login_pasien';
+
+$route['proses-admin']='auth/proses_admin';
+$route['proses-pasien']='auth/proses_pasien';
+
+$route['register']='auth/register';
+$route['simpan-register']='auth/simpan_register';
+
+$route['logout']='auth/logout';
+
+/* =======================
+   DASHBOARD
+======================= */
+
+$route['dashboard_admin']='dashboard_admin';
+$route['dashboard_pasien']='pasien/dashboard';
+
+/* =======================
+   DATA PASIEN ADMIN
+======================= */
+
+$route['pasien']='pasien_admin';
+
+$route['pasien/tambah']='pasien_admin/tambah';
+
+$route['pasien/simpan']='pasien_admin/simpan';
+
+$route['pasien/edit/(:num)']='pasien_admin/edit/$1';
+
+$route['pasien/update/(:num)']='pasien_admin/update/$1';
+
+$route['pasien/hapus/(:num)']='pasien_admin/hapus/$1';
+
+/* =======================
+   DATA DOKTER
+======================= */
+
+$route['dokter']='dokter/index';
+
+$route['dokter/tambah']='dokter/tambah';
+
+$route['dokter/simpan']='dokter/simpan';
+
+$route['dokter/hapus/(:num)']='dokter/hapus/$1';
+
+/* =======================
+   PENDAFTARAN PASIEN
+======================= */
+
+$route['pendaftaran']='pendaftaran/index';
+
+$route['pendaftaran/simpan']='pendaftaran/simpan';
+
+$route['pendaftaran/status']='pendaftaran/status';
+
+/* =======================
+   PENDAFTARAN ADMIN
+======================= */
+
+$route['pendaftaran_admin']='pendaftaran_admin';
+
+$route['pendaftaran_admin/setuju/(:num)']='pendaftaran_admin/setuju/$1';
+
+$route['pendaftaran_admin/tolak/(:num)']='pendaftaran_admin/tolak/$1';
+
+/* =======================
+   LAPORAN
+======================= */
+
+$route['laporan']='laporan/index';
+
+$route['laporan/csv']='laporan/csv';
+
+$route['laporan/pdf']='laporan/pdf';

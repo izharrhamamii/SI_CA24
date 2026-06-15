@@ -7,95 +7,49 @@ class Laporan extends CI_Controller {
     {
         parent::__construct();
 
-        if (!$this->session->userdata('login')) {
-            redirect('login');
+        $this->load->model('Pendaftaran_model');
+
+        if(!$this->session->userdata('login') || $this->session->userdata('role') != 'admin'){
+            redirect('login-admin');
         }
     }
 
-    // LAPORAN PEMINJAMAN
-    public function peminjaman()
+    public function index()
     {
-        $bulan = $this->input->get('bulan');
-
-        $this->db->select('peminjaman.*, anggota.nama');
-        $this->db->from('peminjaman');
-        $this->db->join('anggota', 'anggota.id = peminjaman.anggota_id');
-
-        if ($bulan) {
-            $this->db->where("DATE_FORMAT(tanggal_pinjam, '%Y-%m') =", $bulan);
-        }
-
-        $data['data'] = $this->db->get()->result();
-        $data['bulan'] = $bulan;
-
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
-        $this->load->view('templates/topbar');
-        $this->load->view('laporan/peminjaman', $data);
-        $this->load->view('templates/footer');
+        $data['pendaftaran'] = $this->Pendaftaran_model->get_all();
+        $this->load->view('admin/laporan/index', $data);
     }
 
-    // CETAK PEMINJAMAN
-    public function cetak_peminjaman()
+    public function csv()
     {
-        $bulan = $this->input->get('bulan');
+        $data = $this->Pendaftaran_model->get_all();
 
-        $this->db->select('peminjaman.*, anggota.nama');
-        $this->db->from('peminjaman');
-        $this->db->join('anggota', 'anggota.id = peminjaman.anggota_id');
+        header("Content-type: application/csv");
+        header("Content-Disposition: attachment; filename=laporan.csv");
 
-        if ($bulan) {
-            $this->db->where("DATE_FORMAT(tanggal_pinjam, '%Y-%m') =", $bulan);
+        $output = fopen("php://output", "w");
+
+        fputcsv($output, ["Nama Pasien","Dokter","Keluhan","Tanggal","Jam","Status"]);
+
+        foreach($data as $row){
+            fputcsv($output, [
+                $row->nama_pasien,
+                $row->nama_dokter,
+                $row->keluhan,
+                $row->tanggal_kunjungan,
+                $row->jam_kunjungan,
+                $row->status
+            ]);
         }
 
-        $data['data'] = $this->db->get()->result();
-        $data['bulan'] = $bulan;
-
-        $this->load->view('laporan/cetak_peminjaman', $data);
+        fclose($output);
+        exit;
     }
 
-    // LAPORAN BUKU
-    public function buku()
-    {
-        $kategori_id = $this->input->get('kategori');
+    public function pdf()
+{
+    $data['pendaftaran'] = $this->Pendaftaran_model->get_all();
 
-        $this->db->select('buku.*, kategori.nama_kategori');
-        $this->db->from('buku');
-        $this->db->join('kategori', 'kategori.id = buku.id_kategori');
-
-        if($kategori_id != ''){
-            $this->db->where('buku.id_kategori', $kategori_id);
-        }
-
-        $data['data'] = $this->db->get()->result();
-
-        $data['kategori'] = $this->db->get('kategori')->result();
-
-        $data['kategori_id'] = $kategori_id;
-
-        $this->load->view('templates/header');
-        $this->load->view('templates/sidebar');
-        $this->load->view('templates/topbar');
-        $this->load->view('laporan/buku', $data);
-        $this->load->view('templates/footer');
-    }
-
-    // CETAK BUKU
-    public function cetak_buku()
-    {
-        $kategori_id = $this->input->get('kategori');
-
-        $this->db->select('buku.*, kategori.nama_kategori');
-        $this->db->from('buku');
-        $this->db->join('kategori', 'kategori.id = buku.id_kategori');
-
-        if($kategori_id != ''){
-            $this->db->where('buku.id_kategori', $kategori_id);
-        }
-
-        $data['data'] = $this->db->get()->result();
-
-        $this->load->view('laporan/cetak_buku', $data);
-    }
-
+    $this->load->view('admin/laporan/pdf', $data);
+}
 }
