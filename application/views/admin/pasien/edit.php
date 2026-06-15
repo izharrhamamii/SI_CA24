@@ -184,8 +184,8 @@ Update Data
 
 background:linear-gradient(
 135deg,
-#0d6efd,
-#0056d6
+#000000,
+#ffc400
 );
 
 }

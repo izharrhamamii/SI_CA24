@@ -191,8 +191,8 @@ Belum Ada Data Pasien
 
 background:linear-gradient(
 135deg,
-#47e747,
-#3fec50
+#000000,
+#ffea00
 );
 
 }

@@ -1,174 +1,255 @@
-
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Register Pasien | RS AN-NISA</title>
 
-<link href="<?= base_url('assets/vendor/fontawesome-free/css/all.min.css');?>"
-rel="stylesheet">
-
-<link href="<?= base_url('assets/css/sb-admin-2.min.css');?>"
-rel="stylesheet">
+<link href="<?= base_url('assets/vendor/fontawesome-free/css/all.min.css');?>" rel="stylesheet">
+<link href="<?= base_url('assets/css/sb-admin-2.min.css');?>" rel="stylesheet">
 
 <style>
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
 body{
-background:linear-gradient(135deg,#0052D4,#4364F7,#6FB1FC);
-font-family:'Segoe UI',sans-serif;
-min-height:100vh;
+    min-height:100%;
+    overflow-y:auto;
+}
+
+body{
+
+    font-family:'Segoe UI',sans-serif;
+
+    background:
+    linear-gradient(
+    135deg,
+    #0f172a,
+    #1e293b,
+    #334155
+    );
+
+    overflow-x:hidden;
 }
 
 .wrapper{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:30px;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px 15px;
 }
 
 .register-card{
-width:100%;
-max-width:1200px;
-border-radius:35px;
-overflow:hidden;
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(16px);
-box-shadow:0 25px 55px rgba(0,0,0,.25);
-}
 
-.left-panel{
+    width:100%;
+    max-width:750px;
 
-background:
-linear-gradient(
-rgba(0,45,115,.85),
-rgba(0,102,255,.80)
-),
+    background:#ffffff;
 
-url('https://images.unsplash.com/photo-1579684385127-1ef15d508118');
+    border-radius:30px;
 
-background-size:cover;
-background-position:center;
+    padding:45px;
 
-padding:70px 50px;
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.35);
 
-color:white;
-}
-
-.left-panel h1{
-font-size:42px;
-font-weight:800;
-}
-
-.left-panel p{
-margin-top:25px;
-line-height:1.9;
-font-size:17px;
-}
-
-.feature{
-margin-top:35px;
-}
-
-.feature p{
-font-size:17px;
-}
-
-.feature i{
-font-size:24px;
-margin-right:12px;
-color:#8ce7ff;
-}
-
-.right-panel{
-background:white;
-padding:45px;
 }
 
 .logo{
-width:95px;
-height:95px;
-border-radius:50%;
-margin:auto;
 
-display:flex;
-justify-content:center;
-align-items:center;
+    width:110px;
+    height:110px;
 
-background:linear-gradient(
-135deg,
-#0052D4,
-#4364F7
-);
+    border-radius:50%;
 
-color:white;
-font-size:34px;
+    margin:auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    #d4af37,
+    #fbbf24
+    );
+
+    color:#0f172a;
+
+    font-size:45px;
+
+    box-shadow:
+    0 10px 30px rgba(212,175,55,.35);
+
 }
 
 .heading{
-text-align:center;
-margin-top:20px;
-margin-bottom:30px;
+
+    text-align:center;
+
+    margin-top:25px;
+    margin-bottom:35px;
 }
 
 .heading h3{
-color:#0052D4;
-font-weight:800;
+
+    font-weight:800;
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+}
+
+.heading p{
+
+    color:#64748b;
+
+    margin:0;
+}
+
+.form-group{
+
+    margin-bottom:20px;
+}
+
+.form-group label{
+
+    font-weight:700;
+
+    color:#0f172a;
 }
 
 .form-control,
 textarea{
-border-radius:15px;
+
+    border-radius:15px;
+
+    border:1px solid #d1d5db;
+}
+
+.form-control:focus,
+textarea:focus{
+
+    border-color:#fbbf24;
+
+    box-shadow:
+    0 0 0 .2rem
+    rgba(251,191,36,.20);
+
+}
+
+.input-group-append .btn{
+
+    border-radius:
+    0 15px 15px 0;
 }
 
 .btn-register{
 
-height:54px;
-border:none;
-border-radius:35px;
+    width:100%;
+    height:58px;
 
-font-size:17px;
-font-weight:700;
+    border:none;
 
-background:linear-gradient(
-135deg,
-#0052D4,
-#4364F7
-);
+    border-radius:15px;
 
+    font-size:16px;
+    font-weight:700;
+
+    color:#111827;
+
+    background:
+    linear-gradient(
+    135deg,
+    #d4af37,
+    #fbbf24
+    );
+
+    transition:.3s;
 }
 
 .btn-register:hover{
-transform:translateY(-2px);
+
+    transform:
+    translateY(-2px);
+
+    box-shadow:
+    0 10px 25px rgba(212,175,55,.30);
+
 }
 
-.alert{
-border-radius:15px;
+.info-box{
+
+    margin-top:20px;
+
+    padding:15px;
+
+    background:#f8fafc;
+
+    border-left:5px solid #fbbf24;
+
+    border-radius:12px;
+
+    color:#334155;
 }
 
 .bottom-link{
-text-align:center;
-margin-top:25px;
+
+    text-align:center;
+
+    margin-top:25px;
 }
 
 .bottom-link a{
-font-weight:700;
-color:#0052D4;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    color:#0f172a;
 }
 
-@media(max-width:991px){
+.bottom-link a:hover{
 
-.left-panel{
-display:none;
+    color:#d4af37;
 }
 
-.right-panel{
-padding:30px 20px;
+.alert{
+
+    border-radius:12px;
+}
+
+@media(max-width:576px){
+
+.register-card{
+
+    padding:25px;
+}
+
+.logo{
+
+    width:85px;
+    height:85px;
+
+    font-size:35px;
+}
+
+.heading h3{
+
+    font-size:24px;
 }
 
 }
@@ -183,78 +264,6 @@ padding:30px 20px;
 
 <div class="register-card">
 
-<div class="row no-gutters">
-
-<!-- LEFT -->
-
-<div class="col-lg-5">
-
-<div class="left-panel">
-
-<h1>
-
-<i class="fas fa-hospital-user"></i>
-
-RS AN-NISA
-
-</h1>
-
-<p>
-
-Daftar akun pasien untuk menikmati
-layanan digital rumah sakit,
-pendaftaran online,
-pilih dokter spesialis,
-dan monitoring status kunjungan.
-
-</p>
-
-<div class="feature">
-
-<p>
-
-<i class="fas fa-user-plus"></i>
-
-Registrasi Online Cepat
-
-</p>
-
-<p>
-
-<i class="fas fa-user-md"></i>
-
-Pilih Dokter Spesialis
-
-</p>
-
-<p>
-
-<i class="fas fa-calendar-check"></i>
-
-Atur Jadwal Berobat
-
-</p>
-
-<p>
-
-<i class="fas fa-notes-medical"></i>
-
-Cek Status Pendaftaran
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- RIGHT -->
-
-<div class="col-lg-7">
-
-<div class="right-panel">
-
 <div class="logo">
 
 <i class="fas fa-user-plus"></i>
@@ -265,10 +274,8 @@ Cek Status Pendaftaran
 
 <h3>REGISTER PASIEN</h3>
 
-<p class="text-muted">
-
-Lengkapi data akun pasien anda
-
+<p>
+Lengkapi data untuk membuat akun pasien
 </p>
 
 </div>
@@ -375,7 +382,7 @@ required>
 <button
 type="button"
 class="btn btn-outline-secondary"
-onclick="showPass()">
+onclick="showPassword()">
 
 <i class="fas fa-eye"></i>
 
@@ -391,9 +398,9 @@ onclick="showPass()">
 
 <button
 type="submit"
-class="btn btn-primary btn-block btn-register">
+class="btn-register">
 
-<i class="fas fa-save"></i>
+<i class="fas fa-user-plus"></i>
 
 DAFTAR SEKARANG
 
@@ -401,15 +408,23 @@ DAFTAR SEKARANG
 
 </form>
 
+<div class="info-box">
+
+<i class="fas fa-shield-alt"></i>
+
+Data pasien akan disimpan secara aman dan hanya digunakan untuk kebutuhan pelayanan rumah sakit.
+
+</div>
+
 <div class="bottom-link">
 
 <p class="mt-4">
 
-Sudah punya akun?
+Sudah memiliki akun?
 
-<a href="<?= site_url('login-pasien');?>">
+<a href="<?= site_url('auth/login_pasien');?>">
 
-Login Disini
+Login Sekarang
 
 </a>
 
@@ -421,28 +436,16 @@ Login Disini
 
 </div>
 
-</div>
-
-</div>
-
-</div>
-
 <script>
 
-function showPass(){
+function showPassword(){
 
-var x=
-document.getElementById(
-'password'
-);
+var x=document.getElementById('password');
 
-if(x.type==="password")
-{
-x.type="text";
-}
-else
-{
-x.type="password";
+if(x.type==='password'){
+    x.type='text';
+}else{
+    x.type='password';
 }
 
 }
@@ -450,7 +453,6 @@ x.type="password";
 </script>
 
 <script src="<?= base_url('assets/vendor/jquery/jquery.min.js');?>"></script>
-
 <script src="<?= base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
 
 </body>

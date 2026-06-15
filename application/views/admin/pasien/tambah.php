@@ -223,8 +223,8 @@ Simpan Data
 
 background:linear-gradient(
 135deg,
-#66ec66,
-#66f37d
+#000000,
+#f9e503
 );
 
 }
